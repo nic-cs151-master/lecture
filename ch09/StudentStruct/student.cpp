@@ -7,9 +7,8 @@ void display(const Student array[], int size)
 {
     for (int i = 0; i < size; ++i)
     {
-        cout << "Name: " << array[i].name << '\n';
-        cout << "ID: " << array[i].id << '\n';
-        cout << "Age: " << array[i].age << '\n';
-        cout << '\n';
+        cout << setw(6) << right << array[i].id   << ' '
+             << setw(8) << left  << array[i].name << ' '
+             << setw(4) << right << array[i].age  << '\n';
     }
 }
