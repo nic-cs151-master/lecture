@@ -208,3 +208,104 @@ void BinaryTree::toStringPostOrder(TreeNode *ptr, ostringstream &ostr)
     } 
 }
 
+bool BinaryTree::isLeaf(TreeNode *ptr)
+{   
+    return (ptr->left == nullptr && ptr->right == nullptr);
+}
+
+void BinaryTree::remove(DATA_TYPE value)
+{
+    removeR(mRoot, value);
+}
+
+void BinaryTree::removeR(TreeNodePtr &ptr, DATA_TYPE value)
+{
+    if (ptr == nullptr)
+    {
+        return;
+    }
+
+    // recursive case to find the value
+    if (value > ptr->data)
+    {
+        removeR(ptr->right, value);
+    }
+    else if (value < ptr->data)
+    {
+        removeR(ptr->left, value);
+    }
+    else
+    {
+        // value found
+        deleteNode(ptr);
+    }
+} 
+
+void BinaryTree::deleteNode(TreeNodePtr &nodePtr)
+{
+    // 1st case: leaf node
+    if (isLeaf(nodePtr))
+    {
+        delete nodePtr;
+        nodePtr = nullptr;
+    }
+    // 2nd case: one child
+    // 2a left child
+    else if (nodePtr->left == nullptr)
+    {
+        // child to the right
+        TreeNode *tempPtr = nodePtr;
+        nodePtr = nodePtr->right;
+        tempPtr->right = nullptr;
+        delete tempPtr;
+    }
+    // 2b right child
+    else if (nodePtr->right == nullptr)
+    {
+        // child to the left
+        TreeNode *tempPtr = nodePtr;
+        nodePtr = nodePtr->left;
+        tempPtr->left = nullptr;
+        delete tempPtr;
+    }
+
+    // 3rd case: two child
+    else
+    {
+        // two children
+        DATA_TYPE minValue = processInOrderSuccessor(nodePtr->right);
+        nodePtr->data = minValue;
+    }
+
+}
+
+DATA_TYPE BinaryTree::processInOrderSuccessor(TreeNodePtr &ptr)
+{
+    if (ptr->left != nullptr)
+    {
+        return processInOrderSuccessor(ptr->left);
+    }
+    else // reach nullptr
+    {
+        DATA_TYPE minValue = ptr->data;
+
+        // 1st case: leaf node
+        if (isLeaf(ptr))
+        {
+            delete ptr;
+            ptr = nullptr;
+        }
+        // 2nd case: one child
+        // 2a left child
+        else
+        {
+            // child to the right
+            TreeNode *tempPtr = ptr;
+            ptr = ptr->right;
+            tempPtr->right = nullptr;
+            delete tempPtr;
+        }
+
+        return minValue;
+    }
+}

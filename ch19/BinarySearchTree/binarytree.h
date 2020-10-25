@@ -60,10 +60,10 @@ private:
     bool searchR(TreeNode *ptr, DATA_TYPE value);
 
     bool isLeaf(TreeNode *ptr);
-    void removeR(TreeNode *&ptr, DATA_TYPE value);
-    void deleteNode(TreeNode *&nodePtr);
-    DATA_TYPE processInOrderSuccessor(TreeNode *&ptr);
-    DATA_TYPE processInOrderPredecessor(TreeNode *&ptr);
+    void removeR(TreeNodePtr &ptr, DATA_TYPE value);
+    void deleteNode(TreeNodePtr &nodePtr);
+    DATA_TYPE processInOrderSuccessor(TreeNodePtr &ptr);
+    DATA_TYPE processInOrderPredecessor(TreeNodePtr &ptr);
 };
 
 #endif

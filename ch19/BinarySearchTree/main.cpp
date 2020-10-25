@@ -32,6 +32,8 @@ int main()
     myTree.insert(59);
     myTree.insert(85);
     myTree.insert(95);
+    myTree.insert(75);
+    myTree.insert(72);
     
     cout << "In order: " << myTree.toStringInOrder() << '\n';
     cout << "Post order: " << myTree.toStringPostOrder() << '\n';
@@ -42,11 +44,13 @@ int main()
     cout << "search for 25: " << myTree.search(25) << '\n';
     cout << "searchR for 25: " << myTree.searchR(25) << '\n';
 
-    // myTree.remove(20);
-    // myTree.remove(55);
-    // myTree.remove(50);
-    // cout << "In order: ";
-    // myTree.showInOrder();
+    myTree.remove(20);
+    myTree.remove(55);
+    myTree.remove(50);
+    myTree.remove(70);
+    cout << "In order: " << myTree.toStringInOrder() << '\n';
+    cout << "Post order: " << myTree.toStringPostOrder() << '\n';
+    cout << "Pre order: " << myTree.toStringPreOrder() << '\n';
 
     return 0;
 }
